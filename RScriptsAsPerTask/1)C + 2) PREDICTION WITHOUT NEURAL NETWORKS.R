@@ -3,20 +3,7 @@
 #      program makes the execution time longer. Hence commented those parts.
 
 #installing and importing the library
-#install.packages('stringr')
-library(stringr)
-#install.packages('weatherData')
-library(weatherData)
-#install.packages('outliers')
-#install.packages('zoo')
-library(outliers)
-library(zoo)
 
-#helps the user to pick the file
-x=file.choose(new = FALSE)
-
-#importing the file
-rawdata<-read.csv(x, header = TRUE)
 
 #removing the unecessary columns
 rawdata$Channel=NULL
@@ -43,14 +30,14 @@ Account=rawdata[,1]
 rawdata=rawdata[order(rawdata$Date),]
 
 #To Visualize the outliers for kwh using Box Plot
-boxplot(rawdata$kWh,horizontal = TRUE)
-boxplot.stats(rawdata$kWh)
+#boxplot(rawdata$kWh,horizontal = TRUE)
+#boxplot.stats(rawdata$kWh)
 
 #Replacing outliers with NA by Box Plot
-outliers = boxplot(rawdata$kWh, plot=FALSE)$out
-outliers
-rawdata[rawdata$kWh %in% outliers,3]=NA
-summary(rawdata)
+#outliers = boxplot(rawdata$kWh, plot=FALSE)$out
+#outliers
+#rawdata[rawdata$kWh %in% outliers,3]=NA
+#summary(rawdata)
 
 #Replacing NAs with mean of next 2 observations for temperature
 for(i in 1:length(rawdata$kWh))
